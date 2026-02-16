@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>校務管理系統</title>
+
+<style>
+body{
+  font-family:"Microsoft JhengHei",sans-serif;
+  margin:0;
+  background:#f4f6f9;
+  text-align:center;
+}
+
+h2{margin-top:30px;}
+
+.page{display:none;}
+.active{display:block;}
+
+.link-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  justify-content:center;
+  margin:30px 0;
+}
+
+.btn-link{
+  padding:12px 20px;
+  background:#fff;
+  border:2px solid #4285f4;
+  color:#4285f4;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:.3s;
+  min-width:90px;
+}
+
+.btn-link:hover{
+  background:#4285f4;
+  color:#fff;
+}
+
+.back-btn{
+  margin-top:20px;
+  color:#666;
+  cursor:pointer;
+  font-size:14px;
+}
+
+/* 登入視窗 */
+#login-overlay{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,.6);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+#login-box{
+  background:#fff;
+  padding:25px;
+  border-radius:10px;
+  width:280px;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+input{
+  width:90%;
+  padding:10px;
+  margin:8px 0;
+  border:1px solid #ccc;
+  border-radius:4px;
+}
+
+.btn-submit{
+  width:100%;
+  padding:10px;
+  background:#4285f4;
+  color:#fff;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+}
+
+#msg{color:red;font-size:13px;height:18px;}
+.loading{display:none;color:#4285f4;font-size:13px;margin-bottom:5px;}
+</style>
+</head>
+
+<body>
+
+<!-- ========= 首頁 ========= -->
+<div id="home" class="page active">
+  <h2>校務管理系統</h2>
+  <div class="link-list">
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1hcE82Jjdr9v5I72Nui1ZpgJkri9lsP3-NG6BDLqQIIo/edit?usp=drive_link','admin')">資料清除</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1kXYU5Zo-_GU79FUjNSzIIbBXsbyMTYVxxo5f0IR9h5A/edit?usp=drive_link','admin')">填報設定</div>
+    <div class="btn-link" onclick="goPage('classPage')">班級填報</div>
+  </div>
+</div>
+
+<!-- ========= 班級填報頁 ========= -->
+<div id="classPage" class="page">
+  <h2>班級填報</h2>
+  <div class="link-list">
+
+    <!-- 一年級 -->
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/11zdNOhrnLgi98rUGtapxDBoXXD-eTSUD8uggL1ETEL4/edit?usp=drive_link','all')">101</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1R_yitjHycTTlTYjkmLRbaLRJmdhJtkAspexjYY5wrtY/edit?usp=drive_link','all')">102</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/12wdR9ckVGnZL1ZUK8J81JrzhNaROULFyZtoZOrTWAVg/edit?usp=drive_link','all')">103</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1mTpYBIXNHbEO_-GIP_zSvXxoNoferrPG0KUjCt4vKdk/edit?usp=drive_link','all')">104</div>
+
+    <!-- 二年級 -->
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1ipgX3Y8WHk-dAvrwQjGl-VKseFB2EqLft_wDE4k_a-w/edit?usp=drive_link','all')">201</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1-hXcxCxupcJ7tARTEWVVo2hXuuPeFo-OlxXx0tmhsc0/edit?usp=drive_link','all')">202</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1RW9GX2G9JEUu6Dqk7bubeGpomZzx8D_NaVFtf-jkKgc/edit?usp=drive_link','all')">203</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1m1gx-BqCxHdRFP431_WpiOkFxVYCvads6-DHf1On27g/edit?usp=drive_link','all')">204</div>
+
+    <!-- 三年級 -->
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1PEsqGZ3vmOliAebMHsqkPae97AP42dOnnEAdyo7Ni0s/edit?usp=drive_link','all')">301</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1Ru4S5GfoHSUa3flav5B8ItmglNlYGAoIFDc_iXiBf5Y/edit?usp=drive_link','all')">302</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/12AbvoboYHgD6g4s8o4U-dyaWfdGg1SYAAyP38SDl-jA/edit?usp=drive_link','all')">303</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1LkLWO2QIFEtM04O5cP9aSEDRdQulYbnwtuEl_djTVns/edit?usp=drive_link','all')">304</div>
+
+    <!-- 四年級 -->
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1b2RKZf_T-hziLyB0xcUHg-BcSf8wA4rqX5OLVovDTDk/edit?usp=drive_link','all')">401</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1M_LIiGwdGRTxbymiva4ZFP0Gx5daAtA6QIeRtDgGNYc/edit?usp=drive_link','all')">402</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1niNFxBsylTkXaVmkyPCpCXrCb7hvevNDo3k1dzX-3OY/edit?usp=drive_link','all')">403</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1clr7ZGxUTD6_CqRUHUEx_i9Kin9cEt1JiCbUv6exU7w/edit?usp=drive_link','all')">404</div>
+
+    <!-- 五年級 -->
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1IJtLLPqa-mx7hLHrGTHXuVJsAtgKtXAj6tM2GWN4MP0/edit?usp=drive_link','all')">501</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1LytGinh0BpT8Af20bzrC12fhaOq-mNBiHQkRm607m0I/edit?usp=drive_link','all')">502</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1MOQBHdkDoAE5_QZ4Cmg3OXg7LM9eSWj_OxRDRYdOO8I/edit?usp=drive_link','all')">503</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1_XShPFldMYMaSn3WdO2Jp43zVF_ZhfDaFn9dgTW7L7g/edit?usp=drive_link','all')">504</div>
+
+    <!-- 六年級 -->
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1TYABFm3m8McNaLPpQMz4pUxEEFNR85VLdQ3G9X6lRhQ/edit?usp=drive_link','all')">601</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1ud5eq_xKIXLRClHEoE9HJfbG0KsQl8GOs7EtZUQhR3k/edit?usp=drive_link','all')">602</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1qlB5sc8i8tMoET16JEQr9Q300W-XYKza7OePISb4coI/edit?usp=drive_link','all')">603</div>
+    <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1HwgcDc8I6lGPWFSIagjIioHsxGXbmdiDEC6goSRTZqY/edit?usp=drive_link','all')">604</div>
+
+  </div>
+
+  <div class="back-btn" onclick="goPage('home')">← 返回首頁</div>
+</div>
+
+<!-- ========= 登入彈窗 ========= -->
+<div id="login-overlay">
+  <div id="login-box">
+    <h3>身份驗證</h3>
+    <input type="text" id="acc" placeholder="輸入帳號">
+    <input type="password" id="pwd" placeholder="輸入密碼">
+    <div id="msg"></div>
+    <div id="loader" class="loading">驗證中...</div>
+    <button class="btn-submit" onclick="doVerify()">登入</button>
+    <div class="back-btn" onclick="closeLogin()">取消</div>
+  </div>
+</div>
+
+<script>
+const GAS_URL="https://script.google.com/macros/s/AKfycbz8bwN09zlJJTcXoUUM4T-Abv2N9_P5IJLGtvVX_idOYz-ByUPLylzC33F3WstIw8imVw/exec";
+
+let currentUrl="";
+let requiredRole="all";
+
+function goPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function openLogin(url,role){
+  currentUrl=url;
+  requiredRole=role||"all";
+  document.getElementById("login-overlay").style.display="flex";
+  document.getElementById("acc").value="";
+  document.getElementById("pwd").value="";
+  document.getElementById("msg").innerText="";
+}
+
+function closeLogin(){
+  document.getElementById("login-overlay").style.display="none";
+}
+
+async function doVerify(){
+  const user=document.getElementById("acc").value;
+  const pass=document.getElementById("pwd").value;
+  const msg=document.getElementById("msg");
+  const loader=document.getElementById("loader");
+
+  if(!user||!pass){
+    msg.innerText="請輸入帳號密碼";
+    return;
+  }
+
+  loader.style.display="block";
+
+  try{
+    const res=await fetch(`${GAS_URL}?user=${encodeURIComponent(user)}&pass=${encodeURIComponent(pass)}`);
+    const data=await res.json();
+    loader.style.display="none";
+
+    if(data.ok===true){
+      if(requiredRole==="admin"&&data.role!=="admin"){
+        msg.innerText="僅限管理者使用";
+        return;
+      }
+      window.open(currentUrl,"_blank");
+      closeLogin();
+    }else{
+      msg.innerText="帳號或密碼錯誤";
+    }
+  }catch(e){
+    loader.style.display="none";
+    msg.innerText="連線錯誤";
+  }
+}
+</script>
+
+</body>
+</html>
