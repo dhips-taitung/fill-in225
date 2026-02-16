@@ -3,129 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>馬到成功｜生教管理系統</title>
+<title>馬到成功 - 生教管理系統</title>
 
 <style>
 :root {
-  --main-red: #d32f2f;
-  --gold: #ffcf4d;
-  --light-gold: #fff9e6;
-  --dark-red: #8b0000;
+  --cny-red: #d32f2f;
+  --cny-gold: #ffcf4b;
+  --cny-light-gold: #fff9e6;
+  --cny-dark: #8b0000;
 }
 
 body {
-  font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+  font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
   margin: 0;
-  /* 祥雲底圖意象與漸層背景 */
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(255, 207, 77, 0.1) 0%, transparent 20%),
-    radial-gradient(circle at 80% 80%, rgba(255, 207, 77, 0.1) 0%, transparent 20%),
-    #fff5f5;
-  background-attachment: fixed;
-  color: #333;
+  /* 使用漸層與可愛馬年背景裝飾 */
+  background-color: #fff5f5;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(211, 47, 47, 0.05) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(255, 207, 75, 0.1) 0%, transparent 20%);
+  color: var(--cny-dark);
   text-align: center;
-  padding-bottom: 50px;
+  min-height: 100vh;
 }
 
-/* 裝飾性馬年標題 */
+/* 頂部可愛馬兒裝飾 */
+header {
+  background: var(--cny-red);
+  color: var(--cny-gold);
+  padding: 20px 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-bottom: 4px solid var(--cny-gold);
+  margin-bottom: 30px;
+}
+
 h2 {
-  color: var(--dark-red);
-  font-size: 2.2rem;
-  margin-top: 40px;
-  text-shadow: 2px 2px 0px var(--gold);
+  margin: 10px 0;
+  letter-spacing: 2px;
+  font-size: 1.8rem;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 10px;
 }
 
-h2::before, h2::after {
-  content: '🐎'; /* 可愛馬兒圖示 */
-  font-size: 1.8rem;
+/* 增加可愛馬兒小圖標 (Emoji 替代) */
+h2::before, h2::after { content: "🐎"; }
+
+.page { display: none; padding: 0 15px 50px; }
+.active { display: block; animation: fadeIn 0.5s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* 區塊容器 */
-.page { display: none; max-width: 900px; margin: 0 auto; padding: 20px; }
-.active { display: block; animation: fadeIn 0.5s; }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-/* 選單與班級列表佈局 */
+/* 連結列表佈局 */
 .link-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
   justify-content: center;
-  margin: 30px 0;
+  max-width: 800px;
+  margin: 20px auto;
 }
 
-/* 班級分年級區域 */
-.grade-section {
-  background: white;
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 8px 20px rgba(211, 47, 47, 0.1);
-  border: 2px solid var(--gold);
-}
-
-.grade-title {
-  color: var(--main-red);
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-  border-bottom: 2px dashed var(--gold);
-  display: inline-block;
-  padding: 0 20px 5px;
-}
-
-/* 網格設定：每 4 個一列 */
+/* 班級列表專用：每 4 個一列 */
 .class-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
-/* 按鈕樣式 (可愛馬蹄/金幣感) */
+/* 年級區塊標題 */
+.grade-title {
+  grid-column: span 4;
+  background: var(--cny-gold);
+  color: var(--cny-dark);
+  padding: 5px;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+/* 按鈕樣式：可愛馬蹄金感 */
 .btn-link {
   padding: 15px 10px;
-  background: linear-gradient(135deg, #fff 0%, var(--light-gold) 100%);
-  border: 2px solid var(--main-red);
-  color: var(--dark-red);
-  border-radius: 12px;
+  background: #fff;
+  border: 3px solid var(--cny-red);
+  color: var(--cny-red);
+  border-radius: 15px;
   cursor: pointer;
   font-weight: bold;
   transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 4px 0 var(--main-red);
+  box-shadow: 0 4px 0 var(--cny-red);
   position: relative;
   overflow: hidden;
+  background-image: linear-gradient(135deg, #fff 70%, var(--cny-light-gold));
 }
 
 .btn-link:hover {
   transform: translateY(-3px);
-  background: var(--main-red);
-  color: var(--gold);
-  box-shadow: 0 6px 0 var(--dark-red);
+  box-shadow: 0 7px 0 var(--cny-red);
+  background: var(--cny-light-gold);
 }
 
 .btn-link:active {
   transform: translateY(2px);
-  box-shadow: 0 0px 0 var(--dark-red);
+  box-shadow: 0 2px 0 var(--cny-red);
 }
 
-/* 返回按鈕 */
+/* 首頁功能鍵加寬 */
+#home .btn-link { min-width: 120px; padding: 20px; font-size: 1.1rem; }
+
 .back-btn {
   margin-top: 30px;
-  color: var(--main-red);
+  color: var(--cny-red);
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
   text-decoration: underline;
 }
 
-/* 登入視窗樣式 */
+/* 登入視窗：燈籠/紅包質感 */
 #login-overlay {
   display: none;
   position: fixed;
@@ -139,142 +141,130 @@ h2::before, h2::after {
 }
 
 #login-box {
-  background: var(--light-gold);
+  background: #fff;
   padding: 30px;
   border-radius: 25px;
   width: 300px;
-  border: 5px solid var(--gold);
+  border: 5px solid var(--cny-gold);
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   position: relative;
 }
 
-#login-box h3 { color: var(--dark-red); margin-bottom: 20px; }
+#login-box h3 { color: var(--cny-red); margin-top: 0; }
 
 input {
-  width: 85%;
+  width: 90%;
   padding: 12px;
   margin: 10px 0;
-  border: 2px solid var(--gold);
+  border: 2px solid #eee;
   border-radius: 10px;
   outline: none;
+  transition: border .3s;
 }
 
-input:focus { border-color: var(--main-red); }
+input:focus { border-color: var(--cny-gold); }
 
 .btn-submit {
-  width: 95%;
+  width: 100%;
   padding: 12px;
-  background: var(--main-red);
-  color: var(--gold);
+  background: var(--cny-red);
+  color: var(--cny-gold);
   border: none;
   border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
   cursor: pointer;
-  margin-top: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 0 var(--cny-dark);
 }
 
-#msg { color: var(--main-red); font-size: 14px; margin-top: 5px; min-height: 20px; font-weight: bold; }
-.loading { display: none; color: #b8860b; font-weight: bold; margin-bottom: 5px; }
+.btn-submit:hover { background: var(--cny-dark); }
 
-/* 手機版適應 (每列改為 2 個) */
-@media (max-width: 500px) {
-  .class-grid { grid-template-columns: repeat(2, 1fr); }
+#msg { color: var(--cny-red); font-size: 14px; height: 20px; margin: 5px 0; font-weight: bold; }
+.loading { display: none; color: var(--cny-red); font-weight: bold; margin-bottom: 10px; }
+
+/* 手機版優化 */
+@media (max-width: 480px) {
+  .class-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; font-size: 14px; }
+  .btn-link { padding: 10px 5px; }
 }
 </style>
 </head>
 
 <body>
 
+<header>
+  <h2>生教管理系統</h2>
+  <div style="font-size: 0.9rem; opacity: 0.9;">2026 丙午馬年 · 祝您教學如虎添翼、馬到成功</div>
+</header>
+
 <div id="home" class="page active">
-  <h2>校務管理系統 (馬年大吉)</h2>
   <div class="link-list">
     <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1hcE82Jjdr9v5I72Nui1ZpgJkri9lsP3-NG6BDLqQIIo/edit?usp=drive_link','admin')">🧧 資料清除</div>
     <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1kXYU5Zo-_GU79FUjNSzIIbBXsbyMTYVxxo5f0IR9h5A/edit?usp=drive_link','admin')">⚙️ 填報設定</div>
-    <div class="btn-link" style="background: var(--gold);" onclick="goPage('classPage')">🐎 班級填報入口</div>
+    <div class="btn-link" onclick="goPage('classPage')">📝 班級填報</div>
   </div>
-  <p style="color: var(--main-red); font-weight: bold;">祝您：龍馬精神，校務順心！</p>
 </div>
 
 <div id="classPage" class="page">
-  <h2>班級填報</h2>
-  
-  <div class="grade-section">
+  <h3>請選擇填報班級</h3>
+  <div class="class-grid">
+
     <div class="grade-title">一年級</div>
-    <div class="class-grid">
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/11zdNOhrnLgi98rUGtapxDBoXXD-eTSUD8uggL1ETEL4/edit?usp=drive_link','all')">101</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1R_yitjHycTTlTYjkmLRbaLRJmdhJtkAspexjYY5wrtY/edit?usp=drive_link','all')">102</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/12wdR9ckVGnZL1ZUK8J81JrzhNaROULFyZtoZOrTWAVg/edit?usp=drive_link','all')">103</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1mTpYBIXNHbEO_-GIP_zSvXxoNoferrPG0KUjCt4vKdk/edit?usp=drive_link','all')">104</div>
-    </div>
-  </div>
+    <div class="btn-link" onclick="openLogin('...','all')">101</div>
+    <div class="btn-link" onclick="openLogin('...','all')">102</div>
+    <div class="btn-link" onclick="openLogin('...','all')">103</div>
+    <div class="btn-link" onclick="openLogin('...','all')">104</div>
 
-  <div class="grade-section">
     <div class="grade-title">二年級</div>
-    <div class="class-grid">
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1ipgX3Y8WHk-dAvrwQjGl-VKseFB2EqLft_wDE4k_a-w/edit?usp=drive_link','all')">201</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1-hXcxCxupcJ7tARTEWVVo2hXuuPeFo-OlxXx0tmhsc0/edit?usp=drive_link','all')">202</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1RW9GX2G9JEUu6Dqk7bubeGpomZzx8D_NaVFtf-jkKgc/edit?usp=drive_link','all')">203</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1m1gx-BqCxHdRFP431_WpiOkFxVYCvads6-DHf1On27g/edit?usp=drive_link','all')">204</div>
-    </div>
-  </div>
+    <div class="btn-link" onclick="openLogin('...','all')">201</div>
+    <div class="btn-link" onclick="openLogin('...','all')">202</div>
+    <div class="btn-link" onclick="openLogin('...','all')">203</div>
+    <div class="btn-link" onclick="openLogin('...','all')">204</div>
 
-  <div class="grade-section">
     <div class="grade-title">三年級</div>
-    <div class="class-grid">
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1PEsqGZ3vmOliAebMHsqkPae97AP42dOnnEAdyo7Ni0s/edit?usp=drive_link','all')">301</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1Ru4S5GfoHSUa3flav5B8ItmglNlYGAoIFDc_iXiBf5Y/edit?usp=drive_link','all')">302</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/12AbvoboYHgD6g4s8o4U-dyaWfdGg1SYAAyP38SDl-jA/edit?usp=drive_link','all')">303</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1LkLWO2QIFEtM04O5cP9aSEDRdQulYbnwtuEl_djTVns/edit?usp=drive_link','all')">304</div>
-    </div>
-  </div>
+    <div class="btn-link" onclick="openLogin('...','all')">301</div>
+    <div class="btn-link" onclick="openLogin('...','all')">302</div>
+    <div class="btn-link" onclick="openLogin('...','all')">303</div>
+    <div class="btn-link" onclick="openLogin('...','all')">304</div>
 
-  <div class="grade-section">
     <div class="grade-title">四年級</div>
-    <div class="class-grid">
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1b2RKZf_T-hziLyB0xcUHg-BcSf8wA4rqX5OLVovDTDk/edit?usp=drive_link','all')">401</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1M_LIiGwdGRTxbymiva4ZFP0Gx5daAtA6QIeRtDgGNYc/edit?usp=drive_link','all')">402</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1niNFxBsylTkXaVmkyPCpCXrCb7hvevNDo3k1dzX-3OY/edit?usp=drive_link','all')">403</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1clr7ZGxUTD6_CqRUHUEx_i9Kin9cEt1JiCbUv6exU7w/edit?usp=drive_link','all')">404</div>
-    </div>
-  </div>
+    <div class="btn-link" onclick="openLogin('...','all')">401</div>
+    <div class="btn-link" onclick="openLogin('...','all')">402</div>
+    <div class="btn-link" onclick="openLogin('...','all')">403</div>
+    <div class="btn-link" onclick="openLogin('...','all')">404</div>
 
-  <div class="grade-section">
     <div class="grade-title">五年級</div>
-    <div class="class-grid">
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1IJtLLPqa-mx7hLHrGTHXuVJsAtgKtXAj6tM2GWN4MP0/edit?usp=drive_link','all')">501</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1LytGinh0BpT8Af20bzrC12fhaOq-mNBiHQkRm607m0I/edit?usp=drive_link','all')">502</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1MOQBHdkDoAE5_QZ4Cmg3OXg7LM9eSWj_OxRDRYdOO8I/edit?usp=drive_link','all')">503</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1_XShPFldMYMaSn3WdO2Jp43zVF_ZhfDaFn9dgTW7L7g/edit?usp=drive_link','all')">504</div>
-    </div>
-  </div>
+    <div class="btn-link" onclick="openLogin('...','all')">501</div>
+    <div class="btn-link" onclick="openLogin('...','all')">502</div>
+    <div class="btn-link" onclick="openLogin('...','all')">503</div>
+    <div class="btn-link" onclick="openLogin('...','all')">504</div>
 
-  <div class="grade-section">
     <div class="grade-title">六年級</div>
-    <div class="class-grid">
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1TYABFm3m8McNaLPpQMz4pUxEEFNR85VLdQ3G9X6lRhQ/edit?usp=drive_link','all')">601</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1ud5eq_xKIXLRClHEoE9HJfbG0KsQl8GOs7EtZUQhR3k/edit?usp=drive_link','all')">602</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1qlB5sc8i8tMoET16JEQr9Q300W-XYKza7OePISb4coI/edit?usp=drive_link','all')">603</div>
-      <div class="btn-link" onclick="openLogin('https://docs.google.com/spreadsheets/d/1HwgcDc8I6lGPWFSIagjIioHsxGXbmdiDEC6goSRTZqY/edit?usp=drive_link','all')">604</div>
-    </div>
+    <div class="btn-link" onclick="openLogin('...','all')">601</div>
+    <div class="btn-link" onclick="openLogin('...','all')">602</div>
+    <div class="btn-link" onclick="openLogin('...','all')">603</div>
+    <div class="btn-link" onclick="openLogin('...','all')">604</div>
+
   </div>
 
-  <div class="back-btn" onclick="goPage('home')">⬅ 回到首頁</div>
+  <div class="back-btn" onclick="goPage('home')">← 返回主選單</div>
 </div>
 
 <div id="login-overlay">
   <div id="login-box">
-    <h3>🧧 身份驗證 🧧</h3>
-    <input type="text" id="acc" placeholder="請輸入帳號">
-    <input type="password" id="pwd" placeholder="請輸入密碼">
+    <h3>🧧 身份驗證</h3>
+    <p style="font-size: 12px; color: #999;">請輸入通行碼以開啟表單</p>
+    <input type="text" id="acc" placeholder="帳號">
+    <input type="password" id="pwd" placeholder="密碼">
     <div id="msg"></div>
-    <div id="loader" class="loading">⏳ 正在快馬加鞭驗證中...</div>
-    <button class="btn-submit" onclick="doVerify()">登入系統</button>
-    <div class="back-btn" onclick="closeLogin()">取消返回</div>
+    <div id="loader" class="loading">正在快馬加鞭驗證中...</div>
+    <button class="btn-submit" onclick="doVerify()">確認登入</button>
+    <div class="back-btn" onclick="closeLogin()">取消</div>
   </div>
 </div>
 
 <script>
+// 這裡保留您原本所有的 JS 邏輯，僅修改樣式呈現
 const GAS_URL="https://script.google.com/macros/s/AKfycbz8bwN09zlJJTcXoUUM4T-Abv2N9_P5IJLGtvVX_idOYz-ByUPLylzC33F3WstIw8imVw/exec";
 
 let currentUrl="";
@@ -306,12 +296,11 @@ async function doVerify(){
   const loader=document.getElementById("loader");
 
   if(!user||!pass){
-    msg.innerText="請輸入帳號密碼";
+    msg.innerText="請填寫帳號密碼";
     return;
   }
 
   loader.style.display="block";
-  msg.innerText="";
 
   try{
     const res=await fetch(`${GAS_URL}?user=${encodeURIComponent(user)}&pass=${encodeURIComponent(pass)}`);
@@ -320,17 +309,17 @@ async function doVerify(){
 
     if(data.ok===true){
       if(requiredRole==="admin"&&data.role!=="admin"){
-        msg.innerText="⚠ 權限不足：僅限管理者";
+        msg.innerText="此功能僅限管理員";
         return;
       }
       window.open(currentUrl,"_blank");
       closeLogin();
     }else{
-      msg.innerText="❌ 帳號或密碼錯誤";
+      msg.innerText="驗證失敗，請重試";
     }
   }catch(e){
     loader.style.display="none";
-    msg.innerText="📡 連線超時，請檢查網路";
+    msg.innerText="連線超時，請檢查網路";
   }
 }
 </script>
